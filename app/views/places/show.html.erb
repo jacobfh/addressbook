@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @place.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @place.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @place.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @place.longitude %>
+</p>
+
+<%= image_tag("https://static-maps.yandex.ru/1.x/?lang=en-US&ll=#{@place.longitude},#{@place.latitude}&z=11&l=map&size=600,300&pt=#{@place.longitude},#{@place.latitude},pmgrm
+") %>
+
+<h3>Nearby</h3>
+  <ul>
+    <% for place in @place.nearbys(10) %>
+      <li><%= link_to place.name, place %> (<%= place.distance.round(2)%> miles)</li>
+    <% end %>
+
+
+
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>
